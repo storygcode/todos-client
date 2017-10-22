@@ -25,7 +25,7 @@
         </button>
         <ul class="dropdown-menu">
           <li>
-            <a href="#" @click="deleteTodo(index)">삭제</a>
+            <a href="#" @click="deleteTodo(todo)">삭제</a>
           </li>
         </ul>
       </div>
@@ -44,8 +44,16 @@ export default {
     }
   },
   methods:{
-    deleteTodo(i){
-      this.todos.splice(i,1);
+    deleteTodo(todo){
+      var vm = this
+      this.todos.forEach(function(_todo,i, obj){
+        if(_todo.id === todo.id){
+          vm.$http.delete('http://todos.garam.xyz/api/todos/'+todo.id)
+          .then((result) => {
+              obj.splice(i, 1)
+          })  
+        }
+      })
     },
     createTodo(name){
       if(name != null){
