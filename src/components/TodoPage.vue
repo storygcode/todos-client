@@ -49,7 +49,13 @@ export default {
     },
     createTodo(name){
       if(name != null){
-        this.todos.push({name:name});
+        var vm = this;
+        this.$http.defaults.headers.post['Content-Type'] = 'application/json';
+        this.$http.post('http://todos.garam.xyz/api/todos',{
+          name:name
+        }).then((result) => {
+            vm.todos.push(result.data);
+        })
         this.name = null
       }
     },
