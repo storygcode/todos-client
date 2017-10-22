@@ -37,23 +37,10 @@
 <script>
 export default {
   name: 'TodoPage',
-  data () {
+  data(){ 
     return {
-      name: null,
-      todos: [
-        {
-          name:'청소'
-        },
-        {
-          name:'블로그 쓰기'
-        },
-        {
-          name:'밥먹기'
-        },
-        {
-          name:'안녕'
-        }
-      ]
+    name:null,
+    todos: [],
     }
   },
   methods:{
@@ -65,7 +52,17 @@ export default {
         this.todos.push({name:name});
         this.name = null
       }
+    },
+    getTodos(){
+      var vm = this;
+      this.$http.get('http://todos.garam.xyz/api/todos')
+      .then((result) => {
+          vm.todos = result.data.data;
+      })
     }
+  },
+  mounted(){
+    this.getTodos();
   }
 }
 </script>
