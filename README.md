@@ -1,17 +1,17 @@
 # todos-client
 
-> A Vue.js project
+> Todo 리스트 예제 앱
 
-## Build Setup
+## 빌드 하기
 
 ``` bash
-# install dependencies
+# 의존성 설치
 npm install
 
-# serve with hot reload at localhost:8080
+# localhost:8080 에 실시간 변경하는 페이지 제공
 npm run dev
 
-# build for production with minification
+# 배포 프로그램 만들기
 npm run build
 
 # build for production and view the bundle analyzer report
